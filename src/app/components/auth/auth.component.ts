@@ -1,6 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { collection, addDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+
+import { initializeApp } from "firebase/app";
+
+import {environment} from '../../../environments/environment'; 
+
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+
+
+
+
+
+
 
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,15 +32,41 @@ export class AuthComponent  implements OnInit {
   formData: FormGroup;
   isLoading: boolean = false;
 
-  constructor(private authService:AuthService,private fb:FormBuilder, private auth:AuthService, private router:Router) {
+  app: any;
+  db:any;
+
+  constructor(private authService:AuthService,private fb:FormBuilder, private auth:AuthService, private router:Router,
+    private firestore:AngularFirestore) {
+
+    this.app = initializeApp(environment.firebase);
+    this.db = getFirestore(this.app);
+    console.log(this.db);
+    
     this.formData = this.fb.group({
       name: ['',[Validators.required]],
       email: ['',[Validators.required, Validators.email]],
-      password: ['',[Validators.required]],
+      password: ['',[Validators.required, Validators.minLength(6)]],
     });
+
+
+    // this.enviarDatos();
+
+
    }
 
   ngOnInit() {}
+  // async enviarDatos(){
+  //   try {
+  //     const docRef = await addDoc(collection(this.db, "users"), {
+  //       first: "Ada",
+  //       last: "Lovelace",
+  //       born: 1815
+  //     });
+  //     console.log("Document written with ID: ", docRef.id);
+  //   } catch (e) {
+  //     console.error("Error adding document: ", e);
+  //   }
+  // }
   change(event: any){
     this.screen = event;
   }
@@ -44,5 +84,16 @@ export class AuthComponent  implements OnInit {
   async register(){
 
   }
+
+  presionado(event:any){
+    console.log(event);
+  }
+
+  completarDatos(user:string,contraseña:string){
+    this.formData.controls['email'].patchValue(user);
+    this.formData.controls['password'].patchValue(contraseña);
+  }
+
+  
 
 }

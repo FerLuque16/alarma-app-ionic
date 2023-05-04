@@ -30,7 +30,8 @@
 
 <ion-content [fullscreen]="true">
 
-  <!-- Login Page -->
+  
+  
   <div class="container"  *ngIf="screen == 'signin'">
     <div class="icon ion-text-center">
       <img src="assets/icon.png">
@@ -42,65 +43,106 @@
       <ion-item lines="none" class="ion-item">
         <fieldset  class="input-item">
           <legend>Email</legend> 
-          <ion-input class="input" aria-label="email" formControlName="email" type="email" placeholder="nombre@dominio.com"></ion-input>
+          <ion-input class="input" aria-label="email" (keyup.enter)="login()" formControlName="email" type="email" placeholder="nombre@dominio.com"></ion-input>
         </fieldset>
       </ion-item>
 
       <ion-item lines="none" class="ion-item">
         <fieldset class="input-item">
           <legend>Contraseña</legend> 
-          <ion-input class="input" aria-label="password"  formControlName="password" type="password" placeholder="*******"></ion-input>
+          <ion-input class="input" aria-label="password"  (keyup.enter)="login()" formControlName="password" type="password" placeholder="*******"></ion-input>
         </fieldset>
       </ion-item>
-      <p class="forget-text">Olvido su contraseña? <a (click)="change('forget')">Click aqui</a></p>
-      <p class="signup-text">Sos nuevo? <a (click)="change('signup')">Registrese</a></p>
-      <ion-button class="login-button" (click)="login()" expand="block">Ingresar</ion-button>
-      <ion-button class="google-button" expand="block" color="light"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Ingresar con google</ion-button>
+      <ion-input type="submit" (keydown.enter)="login()"
+       style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+      />
+      
+      <ion-button class="login-button" type="submit" (click)="login()" expand="block">Ingresar</ion-button>
+      
+      
+
     </form>
+
+    <div class="ion-text-center">
+      <h2 class="texto-login">Autocompletar datos</h2>
+      <div class="container button-container">
+
+
+        <div class="contenedor-imagen-info">
+          <p>Admin</p>
+          <button class="img-button" (click)="completarDatos('admin@admin.com','111111')">
+            <img class="img-user" src="/assets/admin.png" alt="">
+          </button>
+        </div>
+        <div class="contenedor-imagen-info">
+          <p>Invitado</p>
+          <button class="img-button" (click)="completarDatos('invitado@invitado.com','222222')">
+            <img class="img-user" src="/assets/invitado.png" alt="">
+          </button>
+        </div>
+        <div class="contenedor-imagen-info">
+          <p>Usuario</p>
+          <button class="img-button" (click)="completarDatos('usuario@usuario.com','333333')">
+            <img class="img-user" src="/assets/usuario.png" alt="">
+          </button>
+        </div>
+        <div class="contenedor-imagen-info">
+          <p>Anonimo</p>
+          <button class="img-button" (click)="completarDatos('anonimo@anonimo.com','444444')">
+            <img class="img-user" src="/assets/anonimo.png" alt="">
+          </button>
+        </div>
+        <div class="contenedor-imagen-info">
+          <p>Tester</p>
+          <button class="img-button" (click)="completarDatos('tester@tester.com','555555')">
+            <img class="img-user" src="/assets/tester.png" alt="">
+          </button>
+        </div>
+        
+        <!-- <button class="img-container">
+          <img src="/assets/programador.png" alt="">
+          
+        </button>
+        
+        <button class="img-container">
+          <img src="/assets/programador.png" alt="">
+          <p>Tester</p>
+        </button>
+        <button class="img-container">
+          <img src="/assets/programador.png" alt="">
+        </button> -->
+  
+        <!-- <div class="img-container">
+          <img src="/assets/programador.png" alt="">
+        </div>
+        <div class="img-container">
+          <img src="/assets/programador.png" alt="">
+        </div>
+        <div class="img-container">
+          <img src="/assets/programador.png" alt="">
+        </div>
+        <div class="img-container">
+          <img src="/assets/programador.png" alt="">
+        </div>
+        <div class="img-container">
+          <img src="/assets/programador.png" alt="">
+        </div> -->
+        
+        
+        
+  
+  
+      </div>
+    </div>
+
+    
   </div>
 
-  <!-- Sign up page -->
-  <div class="container"  *ngIf="screen == 'signup'">
-    <h1 class="heading">🚀 Crear cuenta<br><br></h1>
-    <p class="para">Registrate para comenzar!</p>
-    <form [formGroup]="formData">
-      <ion-item lines="none" class="ion-item">
-        <fieldset  class="input-item">
-          <legend>Nombre completo</legend> 
-          <ion-input class="input"formControlName="name" type="text" placeholder="John Doe"></ion-input>
-        </fieldset>
-      </ion-item>
-      <ion-item lines="none" class="ion-item">
-        <fieldset  class="input-item">
-          <legend>Email</legend> 
-          <ion-input class="input" formControlName="email" type="email" placeholder="john@doe.com"></ion-input>
-        </fieldset>
-      </ion-item>
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend>Contraseña</legend> 
-          <ion-input class="input"formControlName="password" type="password" placeholder="*******"></ion-input>
-        </fieldset>
-      </ion-item>
-      <p class="signup-text">Ya soy miembror&nbsp;<a (click)="change('signin')">Ingresar?</a></p>
-      <ion-button class="login-button" (click)="register()" expand="block">Registrarse</ion-button>
-      <ion-button class="google-button" expand="block" color="light"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Ingresar con Google</ion-button>
-    </form>
-  </div>
+  
 
-  <!-- Forget password page -->
-  <div class="container"  *ngIf="screen == 'forget'">
-    <h1 class="heading">Olvido su contraseña?<br><br></h1>
-    <p class="para">Ingrese su email para reiniciar</p>
-    <ion-item lines="none" class="ion-item">
-      <fieldset  class="input-item">
-        <legend>Email</legend> 
-        <ion-input class="input" aria-label="email" type="email" placeholder="name@domain.com"></ion-input>
-      </fieldset>
-    </ion-item>
-    <p class="signup-text">Rememberd Password&nbsp;<a (click)="change('signin')">Ingresar?</a></p>
-    <ion-button class="login-button" expand="block">Reiniciar contraseña</ion-button>
-  </div>
+
+  
+  
 
 
 </ion-content>

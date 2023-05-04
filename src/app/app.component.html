@@ -1,3 +1,42 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  
+  <ion-menu contentId="main-content" class="menu" *ngIf="usuario">
+    <ion-header class="header-color">
+      <ion-toolbar>
+        <ion-title>Alarma App</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+
+      <ion-list id="inbox-list">
+        <ion-list-header></ion-list-header>
+        <ion-note>{{usuario?.email}}</ion-note>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerDirection="root" (click)="cerrarSesion()">
+            <ion-icon name="log-out-outline"></ion-icon>
+            <ion-label>Cerrar sesion</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header *ngIf="usuario">
+      <ion-toolbar class="toolbar-background">
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </div>
+    
+  
+  
 </ion-app>

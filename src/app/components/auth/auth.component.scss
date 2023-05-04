@@ -85,7 +85,73 @@ ion-footer {
 .icon{
     margin-top: 50px;
     img{
-        height: 50px;
+        height: 150px;
     }
        
+}
+
+.texto-login{
+    
+        color: white;
+    
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    
+}
+
+.contenedor-imagen-info{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        p{
+            color: white;
+        }
+    .img-button{
+        
+        margin: 10px;
+        width: 150px;
+        height: 150px;
+        background-color: var(--ion-color-primary);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .img-user{
+            height: 75px !important;
+            padding: 0%;
+        }
+    }
+}
+
+.img-button:active{
+    transform: scale(0.95);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+}
+
+
+.img-container{
+    margin: 10px;
+    width: 150px;
+    background-color: var(--ion-color-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        height: 50%;
+        padding: 0%;
+    }
+}
+
+.img-container:hover{
+    cursor: pointer;
 }
