@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent  implements OnInit {
 
+  encendido:boolean = false;
+
   constructor(private auth: AuthService ,private router: Router) { }
 
   ngOnInit() {}
@@ -21,6 +23,11 @@ export class HomeComponent  implements OnInit {
     this.auth.logout();
     this.router.navigate(['/auth']);
 
+  }
+
+  encender(){
+
+    this.encendido = this.encendido ? false : true;
   }
 
 }

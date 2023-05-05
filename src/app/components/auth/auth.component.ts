@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { collection, addDoc } from "firebase/firestore";
@@ -24,6 +24,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
+
 export class AuthComponent  implements OnInit {
 
   user:string = '';
@@ -34,6 +35,8 @@ export class AuthComponent  implements OnInit {
 
   app: any;
   db:any;
+
+  
 
   constructor(private authService:AuthService,private fb:FormBuilder, private auth:AuthService, private router:Router,
     private firestore:AngularFirestore) {
@@ -92,6 +95,7 @@ export class AuthComponent  implements OnInit {
   completarDatos(user:string,contraseña:string){
     this.formData.controls['email'].patchValue(user);
     this.formData.controls['password'].patchValue(contraseña);
+    
   }
 
   

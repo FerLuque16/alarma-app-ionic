@@ -4,7 +4,40 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    h1{
-        color: white;
-    }
+    // padding: 0px;
+  
+}
+
+.title-container{
+    // margin-top: 100px;
+    // padding-top: 100px;
+    position: absolute;
+    top: 60px;
+    margin: 0 20px 0 20px;
+    color: white;
+    text-align: center;
+    
+    
+}
+
+.button-container{
+    position: absolute;
+}
+h1{
+    // margin-top: 50px;
+    text-align: center;
+    color: white;
+    align-self:flex-start;
+}
+
+.boton-img{
+    height: 300px;
+    
+}
+
+.boton-img:active{
+    transform: scale(0.95);
+    /* Scaling button to 0.98 to its original size */
+    
+    /* Lowering the shadow */
 }

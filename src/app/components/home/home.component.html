@@ -1,18 +1,28 @@
 
 <ion-content [fullscreen]="true">
+  
+  
   <div class="container">
-    <h1>Esta es la pagina principal</h1>
+    <!-- <h1>Esta es la pagina principal</h1>
 
     <ion-button (click)="volverSinCerrarSesion()"> Volver sin cerrar sesion</ion-button>
-    <ion-button (click)="volverYCerrarSesion()"> Volver y cerrar sesion</ion-button>
+    <ion-button (click)="volverYCerrarSesion()"> Volver y cerrar sesion</ion-button> -->
+
+    <div class="title-container">
+      <h1>Alarma Anti-Robo</h1>
+
+      <h2 *ngIf="!encendido">Presione el boton para iniciar la alarma</h2>
+      <h2 *ngIf="encendido">Presione el boton para apagar la alarma</h2>
+  
+    </div>
 
     <div class="button-container">
 
       
-        <ion-img src="/assets/boton-de-encendido" alt=""></ion-img>
+        <ion-img *ngIf="!encendido" class="boton-img" src="/assets/apagado.png" alt="" (click)="encender()"></ion-img>
       
       
-        <ion-img src="/assets/boton-de-apagado" alt=""></ion-img>
+        <ion-img *ngIf="encendido" class="boton-img"src="/assets/encendido.png" alt="" (click)="encender()"></ion-img>
       
 
     </div>

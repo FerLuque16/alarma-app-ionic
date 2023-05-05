@@ -25,6 +25,7 @@ export class AppComponent {
     })
 
     console.log(this.auth.getUserLogged);
+    // this.router.navigateByUrl('home');
     this.router.navigateByUrl('splash');
     console.log(this.auth.getUserLogged);
     
