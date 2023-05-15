@@ -10,6 +10,9 @@ import {environment} from '../../../environments/environment';
 
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
+import { ToastController } from '@ionic/angular';
+
+
 
 
 
@@ -39,7 +42,7 @@ export class AuthComponent  implements OnInit {
   
 
   constructor(private authService:AuthService,private fb:FormBuilder, private auth:AuthService, private router:Router,
-    private firestore:AngularFirestore) {
+    private firestore:AngularFirestore, private toastController: ToastController) {
 
     this.app = initializeApp(environment.firebase);
     this.db = getFirestore(this.app);
@@ -78,7 +81,12 @@ export class AuthComponent  implements OnInit {
     try {
       await this.authService.login(this.formData.value.email,this.formData.value.password);
       this.router.navigate(['/home']);
-
+      const toast = await this.toastController.create({
+        message:'Logueado correctamente',
+        duration:3000,
+        position:'bottom'
+      }) 
+      await toast.present();
     } catch{
       console.log("Error");
     }

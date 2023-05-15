@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   usuario: any;
+  actualPassword:string = "";
+  actualEmail:string="";
 
   constructor(private afAuth: AngularFireAuth, private router:Router) { }
 
@@ -22,14 +24,25 @@ export class AuthService {
   }
 
   login(email:string,password:string){
-    return  this.afAuth.signInWithEmailAndPassword(email,password)
+
+    try {
+      
+      return  this.afAuth.signInWithEmailAndPassword(email,password)
             .then( async result =>{
-                  
+                  this.actualPassword = password;
+                  this.actualEmail = email;
                   console.log("Estas logueado");
                   this.afAuth.authState.subscribe(data =>{
                     console.log(data);
                   })
             })  
+      
+    } catch (error) {
+      this.actualPassword = '';
+      throw(error)
+      
+    }
+    
   }
 
   logout(){

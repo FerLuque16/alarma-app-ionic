@@ -19,12 +19,22 @@
     <div class="button-container">
 
       
-        <ion-img *ngIf="!encendido" class="boton-img" src="/assets/apagado.png" alt="" (click)="encender()"></ion-img>
+        <ion-img *ngIf="!encendido" class="boton-img" src="/assets/apagado.png" alt="" (click)="cambiarEstadoAlarma()"></ion-img>
       
       
-        <ion-img *ngIf="encendido" class="boton-img"src="/assets/encendido.png" alt="" (click)="encender()"></ion-img>
+        <ion-img *ngIf="encendido" class="boton-img"src="/assets/encendido.png" alt="" (click)="cambiarEstadoAlarma()"></ion-img>
       
+        <div class="text-container">
+          <h3>{{accelerationX}}</h3>
+          <h3>{{accelerationZ}}</h3>
+          <h3>{{accelerationY}}</h3>
+          <ion-button (click)="vibracion()">Vibracion</ion-button>
+        </div>
+        
+
 
     </div>
+
+    
   </div>
 </ion-content>
