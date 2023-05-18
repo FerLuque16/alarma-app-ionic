@@ -29,17 +29,24 @@ export class HomeComponent  implements OnInit {
   estado = '';
   clave: string = "";
 
-   //Ingresos para flash
-   primerIngreso: boolean = true;
-   primerIngresoFlash: boolean = true;
+  //Ingresos para flash
+  primerIngreso: boolean = true;
+  primerIngresoFlash: boolean = true;
  
-   //ORIENTACION
-   posicionActualCelular = 'actual';
-   posicionAnteriorCelular = 'anterior';
+  //ORIENTACION
+  posicionActualCelular = 'actual';
+  posicionAnteriorCelular = 'anterior';
  
-   mostrarDialog: boolean = true;
+  mostrarDialog: boolean = true;
 
   subscription: any;
+  //Sonidos
+  audioIzquierda = "../../assets/audios/hurtando.wav";
+  audioDerecha = "../../assets/audios/epa.wav";
+  audioVertical = "../../assets/audios/bajalo.wav";
+  audioHorizontal = "../../assets/audios/soltame.wav";
+  audioError = "../../assets/audios/sirena.mp3";
+  audio = new Audio();
 
   constructor(private auth: AuthService ,private router: Router, private screenOrientation: ScreenOrientation,
     private flashlight: Flashlight, private vibration:Vibration) { }
@@ -100,7 +107,7 @@ export class HomeComponent  implements OnInit {
           // this.audio.src = this.audioVertical;
           this.posicionAnteriorCelular = 'arriba';
         }
-        // this.audio.play();
+         this.audio.play();
         this.movimientoVertical();
       }
 
@@ -127,9 +134,9 @@ export class HomeComponent  implements OnInit {
     this.primerIngresoFlash = true;
     if (this.posicionActualCelular != this.posicionAnteriorCelular) {
       this.posicionAnteriorCelular = 'izquierda';
-      // this.audio.src = this.audioIzquierda;
+      this.audio.src = this.audioIzquierda;
     }
-    // this.audio.play();
+    this.audio.play();
   }
 
   movimientoDerecha() {
@@ -137,9 +144,9 @@ export class HomeComponent  implements OnInit {
     this.primerIngresoFlash = true;
     if (this.posicionActualCelular != this.posicionAnteriorCelular) {
       this.posicionAnteriorCelular = 'derecha';
-      // this.audio.src = this.audioDerecha;
+      this.audio.src = this.audioDerecha;
     }
-    // this.audio.play();
+    this.audio.play();
   }
 
   movimientoVertical() {
@@ -156,9 +163,9 @@ export class HomeComponent  implements OnInit {
   movimientoHorizontal() {
     if (this.posicionActualCelular != this.posicionAnteriorCelular) {
       this.posicionAnteriorCelular = 'plano';
-      // this.audio.src = this.audioHorizontal;
+      this.audio.src = this.audioHorizontal;
     }
-    // this.primerIngreso ? null : this.audio.play();
+    this.primerIngreso ? null : this.audio.play();
     this.primerIngreso ? null : this.vibration.vibrate(5000);
     this.primerIngreso = true;
     this.primerIngresoFlash = true;
@@ -167,8 +174,8 @@ export class HomeComponent  implements OnInit {
   errorApagado() {
     if (this.primerIngresoFlash) {
       this.primerIngresoFlash ? this.flashlight.switchOn() : null;
-      // this.audio.src = this.audioError;
-      // this.audio.play();
+      this.audio.src = this.audioError;
+      this.audio.play();
       this.vibration.vibrate(5000);
       setTimeout(() => {
         this.primerIngresoFlash = false;
@@ -193,7 +200,7 @@ export class HomeComponent  implements OnInit {
       this.encendido = false;
       this.estado = "";
       this.clave = "";
-      // this.audio.pause();
+      this.audio.pause();
       this.parar(); ///Paro la subscripcion al acceleration
     }
     else if (this.clave != '') {
