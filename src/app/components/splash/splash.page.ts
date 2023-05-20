@@ -12,7 +12,7 @@ export class SplashPage implements OnInit {
     console.log(router.url);
     setTimeout(() => {
       this.router.navigateByUrl('auth',{replaceUrl : true})
-    }, 2000);
+    }, 3000);
    }
 
   ngOnInit() {

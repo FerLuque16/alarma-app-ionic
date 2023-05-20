@@ -104,7 +104,7 @@ export class HomeComponent  implements OnInit {
         this.posicionActualCelular = 'arriba';
 
         if ((this.posicionActualCelular != this.posicionAnteriorCelular)) {
-          // this.audio.src = this.audioVertical;
+          this.audio.src = this.audioVertical;
           this.posicionAnteriorCelular = 'arriba';
         }
          this.audio.play();

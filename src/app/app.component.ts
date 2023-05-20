@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AuthService } from './services/auth.service';
+import {SplashScreen} from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,9 @@ export class AppComponent {
     this.router.navigateByUrl('splash');
     console.log(this.auth.getUserLogged);
     
+  }
+  ionViewDitEnter(){
+    SplashScreen.hide();
   }
 
   cerrarSesion(){
