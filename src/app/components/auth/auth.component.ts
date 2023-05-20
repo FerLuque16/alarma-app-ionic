@@ -82,7 +82,7 @@ export class AuthComponent  implements OnInit {
       await this.authService.login(this.formData.value.email,this.formData.value.password);
       this.router.navigate(['/home']);
       const toast = await this.toastController.create({
-        message:'Logueado correctamente',
+        message:'Ingreso exitoso',
         duration:3000,
         position:'bottom'
       }) 

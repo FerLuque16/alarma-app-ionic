@@ -38,11 +38,11 @@
 
     </div>
     <h1 class="heading">👋 Bienvenido a la app de Alarma<br><br></h1>
-    <p class="para">Logueate para continuar!</p>
+    <p class="para">Identifícate para continuar!</p>
     <form [formGroup]="formData">
       <ion-item lines="none" class="ion-item">
         <fieldset  class="input-item">
-          <legend>Email</legend> 
+          <legend>Correo</legend> 
           <ion-input class="input" aria-label="email" (keyup.enter)="login()" formControlName="email" type="email" placeholder="nombre@dominio.com"></ion-input>
         </fieldset>
       </ion-item>
@@ -87,7 +87,7 @@
           </button>
         </div>
         <div class="contenedor-imagen-info">
-          <p>Anonimo</p>
+          <p>Anónimo</p>
           <button class="img-button" (click)="completarDatos('anonimo@anonimo.com','444444')">
             <img class="img-user" src="/assets/anonimo.png" alt="">
           </button>
